@@ -25,4 +25,3 @@ q - quit
 ## Acknowledgements
 
 Original implementation by Nicholas Paz https://github.com/nickmpaz/tiny-tetris
-Inspired by TinySki https://github.com/KilledByAPixel/TinySki
