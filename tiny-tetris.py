@@ -1,36 +1,30 @@
-#=========#=========#=========#=========#=========#=========#=========#=========#
-import time,random,sys;import curses as h;w=h.initscr();h.noecho();h.cbreak()   #
-rs,cs,m,s,e,p,a,q=20,10,5,300,{0:"  ",1: "# "},[[[1,1],[1,1]],[[0,1,0],[1]*3,[0]#
-*3],[[1,0,0],[1]*3,[0]*3],[[0,0,1],[1]*3,[0]*3],[[1,1,0],[0,1,1],[0]*3],[[0,1,1]#
-,[1,1,0],[0]*3],[[0]*4,[1]*4,[0]*4,[0]*4]],range,len;cu,b,f,t=p[random.randint(0#
-,6)],[[0]*cs for r in a(rs)],False,True;y,ro,co,cr,l,d,n=lambda z,x,y,e=e:e[z[x]#
-[y]],0,cs//2,0,1,s,p[random.randint(0,6)];w.nodelay(t);w.keypad(t);h.curs_set(f)#          
-def c_c(ro, co, se):                                                            #
- for (r,c) in [(r,c) for c in a(q(cu)) for r in a(q(cu))]:                      #
-  if se[r][c]==1 and(ro+r<0 or ro+r>=rs or co+c<0 or co+c>=cs):return f         #
-  if se[r][c]==1 and b[ro+r][co+c]+se[r][c]>1:return f                          #
- return True                                                                    #
-def m_d():                                                                      #
- global ro,co,cu,n,l,d;v,g=lambda cu=cu:cu[r][c]>0,lambda j,b=b:sum(b[j])==cs   #
- if not c_c(ro+1,co,cu):                                                        #
-  if ro==0:sys.exit()                                                           #
-  for (r,c) in [(r,c)for c in a(q(cu))for r in a(q(cu))]:                       #
-   if ro+r in a(rs)and co+c in a(cs)and v():b[ro+r][co+c]=cu[r][c]              #
-  cu,n,ro,co,d=n,p[random.randint(0,6)],-1,cs//2,s+m-l*m                        #
-  for i in[j for j in a(rs)if g(j)]:b[1:i+1]=b[:i];b[0],l=[0]*cs,l+1            #
-try:                                                                            #
- while True:                                                                    #
-  w.move(0,0);o=a(q(n));u=[(r,c) for c in a(q(cu)) for r in a(q(cu))]           #
-  for (r,c) in [(r,c) for c in a(cs) for r in a(rs)]:w.addstr(r,c*q(e),y(b,r,c))#                              
-  w.addstr(rs,0,"="*cs*2+"\nlevel: "+str(l));time.sleep(0.001)                  #
-  for(r,c)in[(r,c)for(r,c)in u if cu[r][c]==1]:w.addstr(ro+r,(co+c)*2,y(cu,r,c))#
-  for(r,c)in[(r,c)for c in o for r in o]:w.addstr(r,42+c*2,y(n,r,c)+"  ")       #
-  try: cr = (cr+1)%d;ch = w.getkey()                     # up - rotate          #
-  except: ch = None                    # TINY TETRIS     # left - move left     #
-  if ch=='KEY_DOWN':m_d();ro+=1                          # right - move right   #
-  elif ch=='KEY_LEFT'and c_c(ro,co - 1, cu): co -= 1     # down - move down     #
-  elif ch=='KEY_RIGHT'and c_c(ro, co + 1, cu): co += 1   # ctrl-c - quit        #
-  elif ch=='KEY_UP'and c_c(ro,co,list(zip(*cu[::-1]))):cu=list(zip(*cu[::-1]))  #
-  if cr==0: m_d();ro+=1                                                         #
-except:h.echo();w.keypad(f);h.nocbreak();h.endwin();print('score: '+str(l))     #
-#=========#=========#=========#=========#=========#=========#=========#=========#
+#! /usr/bin/env python3
+import base64
+import zlib
+code = """eJyVVl+Pm0YQf/en2CJV3jVzDvgu1Qm699QkrRqlVZuqqgi1YFnbOBi4XTjbd7rv3hnAZ
+ztxHi██████████pZZnb+z29mFvJNXZmGNflGg93bcGGqDTNJmeEj72V0ysuGJZYZfIYDW7XGakvcVb
+iVq2l██████████e5o1VhotwtJqWlVarCunVVKVGJ5+5GBkLysIGLGioIYF7OfPA9+A1XHsePHmBw5g
+DfsCc█████T+3s9e2tM5k9QxRFPvgxdP/4iNAEPDrHk2uIvHg0uSY2Ms/YPRd5vfEZ1x9ckCuSHrXpP
+IKjwk█████EQT246Jzcw0PSP6SA0Sw2FLsNRLTHVqN5B7vrxojKs3rG8ZCZmdDBEp8TnOaQCD7psN9o
+kjea1█████iEeqhRQW0Mg6Ioy5Bz8IikwVxPFE2aOXhBuLsrdJYTV8NK0OR3swFSj8GSggg1IWySbNE
+vYIO9█████iDljrgOnqMdnG0jzH1GA60HwtESNlXr2aEFLbmNH442mIjM10ke96IcDv9rPd1khGNbcX
+2z61u+IJOtklMM1dVUXUDQMmu+2R9uBVBPx3zOskNX8MaPDHK9IKpueKYOcPUmdUiGHVVcgNKkHHUU8
+RTvbN7rlohTrHoOT████████╗███████╗████████╗██████╗G██╗███████╗asnyBTiITR4qKlNJnO
+Ljo3zU/eowskLqTx╚══██╔══╝██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝hKtKlf1XKLupLIiMLp
+pTckW33LF0ohcIBNNiO██║+e6█████╗Nz5J/██║YDR██████╔╝██║███████╗c3p6tzMM07VLYsqTQo
+2NKuFktoVPsDy0DDVSt██║UGq██╔══╝j269W██║AQr██╔══██╗██║╚════██║SGVaWDbDa93KDhOWBq
+tYyGxghGlXVbNAKvr91██║HEg███████╗I2p██║pPQ██║Ck██║██║███████║+RWszc7pesmr0ruvEs
+2mlUP2nznCFS80ICv8L╚═╝8Mf╚══════╝x/D╚═╝Pc4╚═╝oQ╚═╝╚═╝╚══════╝UZQ9QzVMx4QiDMc5aF
+adNFB0qOTyfJsFuHKH+bUupurYrIZcs3Re7RmJwOHkTGTJV9jWmnkB7SPMo2CPA5TBA4KedwqKFx/1J
+g95r9d5YXuWkbFbKcbxARDeyKsJNVZChG28n+M5GUwT00Rki/XOthOkyyzjSHlyT3XAvY8BbKk3HHta
+MX6RXoR4BaLLueDqcVlXjhPYzmezLDK50/le/2gi4A9Fc+OCOmyn9pC65p7U8/zh753+SGah6YPZ9ZS
+Z09mEtfhNE9sJXBqpZjMMFns4TeyPUiGdC9E7IGpjqBUZ4DczFzVxSgPIVyHOXizfxGoPItD7WXKMMm
+4Mq4vvs9CtcLTdrrUDd5onJR0txCoR5IPVan7nVErKce/vvln/tNvf38YB90eh1ix9MmmONV4/+btx3
+E38v2lpip2xXy823ABGR0k+9██████████roj1/e/XxmRZruqZl7yeyv388jQZH█████bhj/mNZ9gn4
+LgikoXeI/IS4JTd869c+FKqK██████████os3ev+QiBFQzcHO62+x+toRJ8Bw+K█████8DGH/UsE51N
+PELC22K/j3qZtHHMin8Z+qMjpgY5e██████████0C/Eic87bOcO96/zS1F███████████████Ztw698
+ehVh79Sq+74oq8MXBh6Gr46XV1X3c██████████tJlts1LZP8Hy9e3Lw==███████████████"""
+for char in ['╚', '█', '╗', '═', '╝', '╔', '║']:
+    code = code.replace(char, "")
+code = zlib.decompress(base64.b64decode(code))
+exec(code)
